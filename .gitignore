@@ -1,0 +1,15 @@
+# Compiler outputs #
+*.a
+*.bat
+*.exe
+*.class
+*.iml
+
+# Directories #
+out
+.idea
+
+# Packages #
+*.gz
+*.iso
+*.jar
