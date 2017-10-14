@@ -6,10 +6,12 @@ function [imageBold] = ocrBold(image, threshold, projColor)
     else
         th = 1 - threshold;
     end
+    
     imageBold = imageBold >= ceil(255*th);
     
     if isequal(projColor, [255, 255, 255])
         imageBold = ~imageBold;
     end
+    
      imageBold = imageBold * 255;
 end
