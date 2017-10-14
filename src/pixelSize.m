@@ -1,6 +1,4 @@
-function [pSize] = pixelSize(imagePath, error)
-    image = imread(imagePath);
-    
+function [pSize] = pixelSize(image, error)    
     hSize = size(image, 2);
     vSize = size(image, 1);
     

@@ -13,7 +13,7 @@ for i = 1 : 1
     colorFrequence = getColorsByFrequence(image);
 
     for j = 1 : size(colorFrequence, 1)
-        image = selectColor(imagePath, colorFrequence(j, :));
+        image = selectColor(image, colorFrequence(j, :));
         
         if i < 10
             if j < 10

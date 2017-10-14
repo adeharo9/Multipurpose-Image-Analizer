@@ -1,5 +1,6 @@
 clc;
 clc;
+addpath('../samples/');
 addpath('../samples/super_mario_bros/');
 imageBasePath = 'super_mario_bros_';
 imagePath = strcat(imageBasePath, '12.png');

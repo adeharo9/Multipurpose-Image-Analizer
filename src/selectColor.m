@@ -1,6 +1,4 @@
-function [image] = selectColor(imagePath, color)
-    image = imread(imagePath);
-    
+function [image] = selectColor(image, color)    
     hSize = size(image, 2);
     vSize = size(image, 1);
     

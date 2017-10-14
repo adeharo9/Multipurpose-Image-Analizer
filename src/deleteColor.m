@@ -1,6 +1,4 @@
-function [image] = deleteColor(imagePath, color)
-    image = imread(imagePath);
-    
+function [image] = deleteColor(image, color)
     hSize = size(image, 2);
     vSize = size(image, 1);
     
