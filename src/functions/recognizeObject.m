@@ -1,12 +1,14 @@
-function [ mini,minj,maxi,maxj,visited ] = recognizeObject(i,j,I,visited)
+function [mini,minj,maxi,maxj,visited,A] = recognizeObject(i,j,I,visited)
 %RECOGNIZE Summary of this function goes here
 %   Detailed explanation goes here
 persistent stack;
 
-if isempty(stack) || size(I,1)*size(I,2) ~= size(stack,1)
-    stack = uint16(zeros(size(I,1)*size(I,2),2));
+sizei = size(I,1);
+sizej = size(I,1);
+if isempty(stack) || sizei*sizej ~= size(stack,1)
+    stack = uint16(zeros(sizei*sizej,2));
 end
-
+A = uint8(zeros(sizei,sizej));
 index = 1;
 stack(index,:) = [i,j];
 nb = [-1,-1;-1,0;-1,1;0,-1;0,1;1,-1;1,0;1,1];
@@ -23,6 +25,7 @@ while index > 0
     if (visited(y,x))
         continue
     end
+    A(y,x) = 255;
     visited(y,x) = true;
     mini = min(mini,y);
     maxi = max(maxi,y);

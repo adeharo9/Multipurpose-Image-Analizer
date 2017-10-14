@@ -9,11 +9,11 @@ imCount = 1;
 for i = 1:sizei
     for j = 1:sizej
         if ~visited(i,j) && I(i,j)
-            [mini, minj, maxi, maxj, visited] = recognizeObject(i,j,I,visited);
+            [mini, minj, maxi, maxj, visited,A] = recognizeObject(i,j,I,visited);
             sizeTi = (maxi-mini)+1;
             sizeTj = (maxj-minj)+1;
             if sizeTi >= 6 && sizeTj >= 6
-                imwrite(Iref(mini:maxi,minj:maxj,:),strcat('object_',num2str(imCount),'.png'));
+                imwrite(Iref(mini:maxi,minj:maxj,:),strcat('object_',num2str(imCount),'.png'),'alpha',A(mini:maxi,minj:maxj,:));
                 imCount = imCount+1;
             end
         end 
