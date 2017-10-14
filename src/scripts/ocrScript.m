@@ -5,7 +5,7 @@ addpath('../functions/');
 addpath('../../samples/ocr/');
 imageBasePath = 'ocr_';
 imageFormat = '.png';
-imagePath = strcat(imageBasePath, '11', imageFormat);
+imagePath = strcat(imageBasePath, '12', imageFormat);
 imageSaveBasePath = '../../output/';
 imageSavePath = strcat(imageSaveBasePath, imagePath);
 
@@ -20,4 +20,4 @@ cmd = replace(res.Text, "‘", "'");
 cmd = replace(cmd, "’", "'");
 cmd = strrep(cmd,sprintf(':\n'),sprintf(';\n'));
 
-eval(res.Text);
+eval(cmd);

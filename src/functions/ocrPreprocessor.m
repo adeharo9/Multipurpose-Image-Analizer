@@ -12,5 +12,4 @@ function [imageProcessed] = ocrPreprocessor(image, threshold)
     imageProcessed = ocrZoom(image);
     imageProcessed = project(imageProcessed, backColor, projColor);
     imageProcessed = ocrBold(imageProcessed, threshold, projColor);
-%     imageProcessed = ocrFlat(imageProcessed);
 end
