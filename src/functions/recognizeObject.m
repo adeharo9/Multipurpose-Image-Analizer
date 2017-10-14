@@ -20,6 +20,9 @@ while index > 0
     y = stack(index,1);
     x = stack(index,2);
     index = index-1;
+    if (visited(y,x))
+        continue
+    end
     visited(y,x) = true;
     mini = min(mini,y);
     maxi = max(maxi,y);
