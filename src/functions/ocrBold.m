@@ -13,5 +13,5 @@ function [imageBold] = ocrBold(image, threshold, projColor)
         imageBold = ~imageBold;
     end
     
-     imageBold = imageBold * 255;
+     imageBold(imageBold) = 255;
 end
