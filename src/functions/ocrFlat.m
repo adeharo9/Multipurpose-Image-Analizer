@@ -1,3 +1,3 @@
-function [imageFlat] = ocrFlat(image)
-    imageFlat = flatColors(image, 45);
+function [image] = ocrFlat(image)
+    image = flatColors(image, 45);
 end

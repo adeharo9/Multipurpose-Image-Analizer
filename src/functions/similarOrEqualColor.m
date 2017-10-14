@@ -5,5 +5,5 @@ function [b] = similarOrEqualColor(color1, color2, errP)
         errP = 0.1;
     end
     
-    b =  module <= sqrt(3)*255*errP;
+    b =  module <= 441.672956*errP;
 end
