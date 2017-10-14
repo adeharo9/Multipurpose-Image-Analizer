@@ -1,9 +1,9 @@
-function [Iout] = flatColors()
+function [Iout] = flatColors(I,threshold)
 %UNTITLED4 Summary of this function goes here
 %   Detailed explanation goes here
 
-I = imread('lel.png');
-threshold = 20;
+%I = imread('lel.png');
+%threshold = 20;
 
 visited = false(size(I,1), size(I,2));
 Iout = I;
