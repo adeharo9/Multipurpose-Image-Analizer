@@ -2,14 +2,15 @@ clc;
 addpath('../samples/super_mario_bros/');
 imageBasePath = 'super_mario_bros_';
 
-for i = 4 : 8
+for i = 1 : 1
     if i < 10
         imagePath = strcat(imageBasePath, '0', num2str(i), '.png');
     else
         imagePath = strcat(imageBasePath, num2str(i), '.png');
     end
 
-    colorFrequence = getColorsByFrequence(imagePath);
+    image = imread(imagePath);
+    colorFrequence = getColorsByFrequence(image);
 
     for j = 1 : size(colorFrequence, 1)
         image = selectColor(imagePath, colorFrequence(j, :));
