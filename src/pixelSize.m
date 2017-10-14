@@ -4,7 +4,6 @@ function [pSize] = pixelSize(imagePath, error)
     hSize = size(image, 2);
     vSize = size(image, 1);
     
-    
     pSize = hSize * vSize + 1;
     
     for i = 1 : vSize
