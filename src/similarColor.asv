@@ -1,6 +1,0 @@
-function [b] = similarColor(color1, color2, err)
-    module = norm(color2 - color1);
-    
-    if 
-    b =  module > 0 && module <= sqrt(3)*255*0.1;
-end
