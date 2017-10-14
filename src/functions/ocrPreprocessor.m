@@ -1,7 +1,7 @@
 function [imageProcessed] = ocrPreprocessor(image, threshold)
     
     if ~exist('threshold', 'var')
-        threshold = 0.5;
+        threshold = 0.1;
     elseif threshold < 0
         threshold = 0;
     elseif threshold > 1
@@ -9,7 +9,8 @@ function [imageProcessed] = ocrPreprocessor(image, threshold)
     end
     
     imageProcessed = image;
+    backColor = backgroundColor(image);
     imageProcessed = ocrZoom(imageProcessed);
-    imageProcessed = ocrBold(imageProcessed, threshold);
+    imageProcessed = ocrBold(imageProcessed, threshold, backColor);
     imageProcessed = ocrFlat(imageProcessed);
 end

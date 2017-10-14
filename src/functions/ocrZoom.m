@@ -6,5 +6,7 @@ function [imageZoom] = ocrZoom(image)
     if minSize < 1080
         scale = 1080 / minSize;
         imageZoom = imresize(image, scale);
+    else
+        imageZoom = image;
     end
 end

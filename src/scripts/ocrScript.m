@@ -5,7 +5,7 @@ addpath('../functions/');
 addpath('../../samples/ocr/');
 imageBasePath = 'ocr_';
 imageFormat = '.png';
-imagePath = strcat(imageBasePath, '09', imageFormat);
+imagePath = strcat(imageBasePath, '04', imageFormat);
 imageSaveBasePath = '../../output/';
 imageSavePath = strcat(imageSaveBasePath, imagePath);
 

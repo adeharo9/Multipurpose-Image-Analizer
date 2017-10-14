@@ -4,6 +4,7 @@
 *.exe
 *.class
 *.iml
+*.asv
 
 # Directories #
 out

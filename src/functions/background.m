@@ -1,6 +1,4 @@
-function [backColor] = background(imagePath)
-    image = imread(imagePath);
-    
+function [backColor] = background(image)    
     hSize = size(image, 2);
     vSize = size(image, 1);
     
