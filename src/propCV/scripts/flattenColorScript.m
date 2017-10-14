@@ -5,7 +5,7 @@ addpath('../../common/functions/');
 addpath('../../../samples/super_mario_bros/');
 imageBasePath = 'super_mario_bros_';
 imagePath = strcat(imageBasePath, '12.png');
-imageSavePath = strcat('../../../output/', 'flatten_', imagePath);
+imageSavePath = strcat('../../../output/propCV/', 'flatten_', imagePath);
 
 image = flattenColor(imagePath);
 

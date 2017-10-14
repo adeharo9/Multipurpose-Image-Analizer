@@ -1,6 +1,7 @@
 clc;
 addpath('../functions/');
-addpath('../../samples/super_mario_bros/');
+addpath('../../common/functions/');
+addpath('../../../samples/propCV/');
 imageBasePath = 'super_mario_bros_';
 
 for i = 1 : 1
@@ -18,15 +19,15 @@ for i = 1 : 1
         
         if i < 10
             if j < 10
-                imwrite(image, strcat('../../output/', 'layer_', imageBasePath, '0', num2str(i), '_0', num2str(j), '.png'));
+                imwrite(image, strcat('../../../output/propCV/', 'layer_', imageBasePath, '0', num2str(i), '_0', num2str(j), '.png'));
             else
-                imwrite(image, strcat('../../output/', 'layer_', imageBasePath, '0', num2str(i), '_', num2str(j), '.png'));
+                imwrite(image, strcat('../../../output/propCV/', 'layer_', imageBasePath, '0', num2str(i), '_', num2str(j), '.png'));
             end
         else
             if j < 10
-                imwrite(image, strcat('../../output/', 'layer_', imageBasePath, num2str(i), '_0', num2str(j), '.png'));
+                imwrite(image, strcat('../../../output/propCV/', 'layer_', imageBasePath, num2str(i), '_0', num2str(j), '.png'));
             else
-                imwrite(image, strcat('../../output/', 'layer_', imageBasePath, num2str(i), '_', num2str(j), '.png'));
+                imwrite(image, strcat('../../../output/propCV/', 'layer_', imageBasePath, num2str(i), '_', num2str(j), '.png'));
             end
         end
     end
