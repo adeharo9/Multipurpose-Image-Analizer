@@ -2,8 +2,8 @@ clc;
 clc;
 addpath('../functions/');
 addpath('../../common/functions/');
-addpath('../../../samples/super_mario_bros/');
-imageBasePath = 'super_mario_bros_';
+addpath('../../../samples/propCV/');
+imageBasePath = 'propCV_';
 imagePath = strcat(imageBasePath, '12.png');
 imageSavePath = strcat('../../../output/propCV/', 'flatten_', imagePath);
 

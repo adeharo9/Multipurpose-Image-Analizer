@@ -2,7 +2,7 @@ clc;
 addpath('../functions/');
 addpath('../../common/functions/');
 addpath('../../../samples/propCV/');
-imageBasePath = 'super_mario_bros_';
+imageBasePath = 'propCV_';
 
 for i = 1 : 1
     if i < 10
