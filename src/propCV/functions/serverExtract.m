@@ -5,7 +5,6 @@ fid = fopen('decodedImage.jpg', 'wb');
 fwrite(fid, s, 'uint8');            % dump the raw binary to the hard disk
 fclose(fid);
 I = imread('decodedImage.jpg');
-%I = imread(s);
 numObjects = generateObjects(I);
 Iout = uint8(zeros(numObjects,1));
 for i = 1:numObjects
