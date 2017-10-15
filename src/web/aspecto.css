@@ -1,0 +1,59 @@
+body{
+    background: #536976;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, #292E49, #536976);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, #292E49, #536976); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    font-family: "Century Gothic";
+    font-weight: bold;
+}
+#seleccion{
+    background: #BBD2C5;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to top, #292E49, #536976, #BBD2C5);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to top, #292E49, #536976, #BBD2C5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    padding: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.92), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin: 5px;
+    border-radius: 25px;
+}
+#datos{
+    background: #BBD2C5;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, #536976, #BBD2C5);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, #536976, #BBD2C5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    padding: 10px;
+    box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.92), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin: 5px;
+    border-radius: 25px;
+}
+#pulsame{
+    border-radius: 15px 50px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.92), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    font-weight: bold;
+    color: cyan;
+    cursor:pointer;
+}
+#imagen,#imagen2,#imagen3{
+    background: #134E5E; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to top, #71B280, #134E5E); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to top, #71B280, #134E5E); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    cursor: pointer;
+    padding: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.92), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin: 5px;
+    border-radius: 11px;
+    color: cyan;
+    font-weight: bold;
+}
+.valores{
+    color: darkred;
+}
+#contenedorTexturas{
+    display: inline-block;
+}
+#codigo{
+    color: darkred;
+    background-color:#536976; /* fallback for old browsers */
+    padding: 10px;
+    display: none;
+    border-radius: 25px;
+}

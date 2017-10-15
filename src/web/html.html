@@ -1,0 +1,262 @@
+<html>
+<header>
+    <meta charset="UTF-8">
+    <script src="jquery-3.2.1.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link rel="stylesheet" href="aspecto.css">
+</header>
+<body>
+
+<!--#############################OCR#################################################-->
+<div id="seleccion">
+    <h1><b>Object Character Recognition</b></h1><br>
+    <input type="file" id="imagen" name="pic" accept="image/*">
+    <button onclick="matlab_OCR()" class="btn btn-primary" id="pulsame">Púlsame</button>
+</div>
+<div id="datos">
+   <b>Dimension (WxH): </b><div class="valores" id="dimensiones"></div>
+    <b>Size (bytes): </b><div class="valores" id="tamano"></div>
+    <b>Image: </b><br /><img id="imagenWeb"> </br>
+    <b>Output: </b><br /><img id="codigo">
+</div>
+
+<!--#############################FIN OCR#############################################-->
+
+
+
+
+<br>
+<br>
+<br>
+<br>
+
+
+
+<!--#############################TEXTURAS############################################-->
+<div id="seleccion">
+   <h1><b>Texture extraction</b></h1><br>
+    <input type="file" id="imagen2" name="pic" accept="image/*">
+    <button onclick="matlab_TE()" class="btn btn-primary" id="pulsame">Púlsame</button>
+</div>
+<div id="datos">
+    <b>Dimension (WxH): </b><div class="valores" id="dimensiones2"></div>
+    <b>Size (bytes): </b><div class="valores" id="tamano2"></div>
+    <b>Image: </b><br /><img id="imagenWeb2"> </br>
+    <b>Output: </b><br /><div id="contenedorTexturas"></div>
+
+</div>
+
+<!--#############################FIN TEXTURAS#######################################-->
+
+
+
+<br>
+<br>
+<br>
+<br>
+
+
+
+<!--#############################TEARS############################################-->
+   <div id="seleccion">
+        <h1><b>Color Layer Extraction</b></h1><br>
+    <input type="file" id="imagen3" name="pic" accept="image/*">
+    <button onclick="matlab_LT()" class="btn btn-primary" id="pulsame">Púlsame</button>
+</div>
+<div id="datos">
+   <b>Dimension (WxH): </b><div class="valores" id="dimensiones3"></div>
+    <b>Size (bytes): </b><div class="valores" id="tamano3"></div>
+    <b>Image: </b><br /><img id="imagenWeb3"> </br>
+    <b>Output: </b><br /><div id="contenedorTexturas2"></div>
+
+</div>
+
+<!--#############################FIN TEARS#######################################-->
+
+
+
+<script>
+    var anchura, altura;
+//**************************CODIGO OCR************************************//
+    function matlab_OCR() {
+        document.getElementById("codigo").style.display = 'block';
+        var body = JSON.stringify({
+            "nargout": 1,
+            "rhs": [localStorage.getItem("imgData")],
+            "outputFormat": {"mode": "small", "nanType": "string"}
+        });
+
+        var xhr = new XMLHttpRequest();
+        xhr.addEventListener("readystatechange", function () {
+            if (this.readyState === 4) {
+                document.getElementById("codigo").innerText = JSON.parse(this.responseText).lhs[0];
+            }
+        });
+        xhr.open("POST", "http://10.192.30.12:9910/server/serverOcr");
+        xhr.setRequestHeader("content-type", "application/json");
+        xhr.send(body);
+    }
+
+
+    $('#imagen').on('change', function () {
+        var reader = new FileReader();
+
+        reader.onload = function () {
+            var thisImage = reader.result;
+
+            localStorage.setItem("imgData", thisImage);
+            var imageI = new Image();
+
+            imageI.src = 'data:image/jpeg;base64,' + btoa(localStorage.getItem("imgData"));
+
+            var elementoIMG = document.getElementById("imagenWeb");
+            elementoIMG.src = 'data:image/jpeg;base64,' + btoa(localStorage.getItem("imgData"));
+            elementoIMG.setAttribute("style","width: 250px");
+            elementoIMG.setAttribute("style","height: 250px");
+
+            imageI.onload = function(){
+                anchura = imageI.width;
+                altura = imageI.height;
+                document.getElementById("dimensiones").innerText = anchura + "x" + altura;
+            };
+        };
+        document.getElementById("tamano").innerText = this.files[0].size;
+        var archivo = this.files[0];
+        reader.readAsBinaryString(archivo);
+
+
+    });
+//**************************FIN CODIGO OCR************************************//
+
+
+//**************************CODIGO TEXTURAS************************************//
+    function matlab_TE() {
+
+        var body = JSON.stringify({
+            "nargout": 1,
+            "rhs": [localStorage.getItem("imgData2")],
+            "outputFormat": {"mode": "small", "nanType": "string"}
+        });
+
+        var xhr = new XMLHttpRequest();
+        xhr.addEventListener("readystatechange", function () {
+            if (this.readyState === 4) {
+                console.log(this.responseText);
+
+                var parseado = JSON.parse(this.responseText).lhs[0];
+                console.log(parseado.mwdata);
+                console.log(parseado.mwdata.length);
+                for(var i = 0; i < parseado.mwsize[0];++i){
+                    var eImagen = document.createElement('img');
+                    var arrayBin = "";
+                    for(var j = i + parseado.mwsize[0];j < parseado.mwsize[0]*parseado.mwdata[i];j += parseado.mwsize[0]){
+                        arrayBin += String.fromCharCode(parseado.mwdata[j]);
+                    }
+                    console.log(arrayBin);
+
+                    eImagen.src = 'data:image/jpeg;base64,' + btoa(arrayBin);
+                    document.getElementById("contenedorTexturas").appendChild(eImagen);
+                }
+            }
+        });
+        xhr.open("POST", "http://10.192.30.12:9910/server/serverExtract");
+        xhr.setRequestHeader("content-type", "application/json");
+        xhr.send(body);
+    }
+
+    $('#imagen2').on('change', function () {
+        var reader = new FileReader();
+
+        reader.onload = function () {
+            var thisImage = reader.result;
+
+            localStorage.setItem("imgData2", thisImage);
+            var imageI = new Image();
+
+            imageI.src = 'data:image/jpeg;base64,' + btoa(localStorage.getItem("imgData2"));
+
+            var elementoIMG = document.getElementById("imagenWeb2");
+            elementoIMG.src = 'data:image/jpeg;base64,' + btoa(localStorage.getItem("imgData2"));
+            elementoIMG.setAttribute("style","width: 250px");
+            elementoIMG.setAttribute("style","height: 250px");
+
+            imageI.onload = function(){
+                anchura = imageI.width;
+                altura = imageI.height;
+                document.getElementById("dimensiones2").innerText = anchura + "x" + altura;
+            };
+        };
+        document.getElementById("tamano2").innerText = this.files[0].size;
+
+        var archivo = this.files[0];
+        reader.readAsBinaryString(archivo);
+    });
+    //**************************FIN CODIGO TEXTURAS************************************//
+
+    //**************************CODIGO DE LAYERS OF TEARS************************************//
+    function matlab_LT() {
+
+        var body = JSON.stringify({
+            "nargout": 1,
+            "rhs": [localStorage.getItem("imgData3")],
+            "outputFormat": {"mode": "small", "nanType": "string"}
+        });
+
+        var xhr = new XMLHttpRequest();
+        xhr.addEventListener("readystatechange", function () {
+            if (this.readyState === 4) {
+                console.log(this.responseText);
+
+                var parseado = JSON.parse(this.responseText).lhs[0];
+                console.log(parseado.mwdata);
+                console.log(parseado.mwdata.length);
+                for(var i = 0; i < parseado.mwsize[0];++i){
+                    var eImagen = document.createElement('img');
+                    var arrayBin = "";
+                    for(var j = i + parseado.mwsize[0];j < parseado.mwsize[0]*parseado.mwdata[i];j += parseado.mwsize[0]){
+                        arrayBin += String.fromCharCode(parseado.mwdata[j]);
+                    }
+                    console.log(arrayBin);
+
+                    eImagen.src = 'data:image/jpeg;base64,' + btoa(arrayBin);
+                    document.getElementById("contenedorTexturas2").appendChild(eImagen);
+                }
+            }
+        });
+        xhr.open("POST", "http://10.192.30.12:9910/server/serverLayer");
+        xhr.setRequestHeader("content-type", "application/json");
+        xhr.send(body);
+    }
+
+    $('#imagen3').on('change', function () {
+        var reader = new FileReader();
+
+        reader.onload = function () {
+            var thisImage = reader.result;
+
+            localStorage.setItem("imgData3", thisImage);
+            var imageI = new Image();
+
+            imageI.src = 'data:image/jpeg;base64,' + btoa(localStorage.getItem("imgData3"));
+
+            var elementoIMG = document.getElementById("imagenWeb3");
+            elementoIMG.src = 'data:image/jpeg;base64,' + btoa(localStorage.getItem("imgData3"));
+            elementoIMG.setAttribute("style","width: 250px");
+            elementoIMG.setAttribute("style","height: 250px");
+
+            imageI.onload = function(){
+                anchura = imageI.width;
+                altura = imageI.height;
+                document.getElementById("dimensiones3").innerText = anchura + "x" + altura;
+            };
+        };
+        document.getElementById("tamano3").innerText = this.files[0].size;
+
+        var archivo = this.files[0];
+        reader.readAsBinaryString(archivo);
+    });
+    //**************************FIN CODIGO LAYERS OF TEARS************************************//
+
+</script>
+</body>
+</html>
