@@ -1,4 +1,4 @@
-function [] = extractObjects(I,Iref)
+function [imCount] = extractObjects(I,Iref)
 %EXTRACT Summary of this function goes here
 %   Detailed explanation goes here
 
@@ -19,4 +19,5 @@ for i = 1:sizei
         end 
     end
 end
+imCount = imCount-1;
 end

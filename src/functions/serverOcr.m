@@ -1,4 +1,4 @@
-function [code] = basura2(s)
+function [code] = serverOcr(s)
 %UNTITLED Summary of this function goes here
 %   Detailed explanation goes here
 
