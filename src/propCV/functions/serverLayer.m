@@ -13,7 +13,7 @@ I = imread('../../../output/servers/decodedImage.jpg');
 imLayers = colorLayerSeparation(I);
 Iout = uint32(zeros(size(imLayers,1),1));
 for i = 1:size(imLayers,1)
-    imwrite(imLayers(i,:,:,:),'../../../output/servers/temp.png');
+    imwrite(reshape(imLayers(i,:,:,:), size(imLayers, 2), size(imLayers, 3), 3, 1),'../../../output/servers/temp.png');
     fid = fopen('../../../output/servers/temp.png');
     A = uint32(fread(fid));
     Iout(i,1) = size(A,1);

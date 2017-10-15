@@ -1,5 +1,5 @@
 function [b] = similarOrEqualColor(color1, color2, errP)
-    module = norm(color2 - color1);
+    module = norm(double(int16(color2) - int16(color1)));
     
     if ~exist('errP', 'var')
         errP = 0.1;

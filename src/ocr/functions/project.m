@@ -4,7 +4,7 @@ function [image] = project(image, backColor, projColor)
     
     for i = 1 : vSize
         for j = 1 : hSize
-            if similarOrEqualColor(double(reshape(image(i, j, :), 1, 3)), backColor)
+            if similarOrEqualColor(reshape(image(i, j, :), 1, 3), backColor)
                 image(i, j, :) = projColor;
             end
         end

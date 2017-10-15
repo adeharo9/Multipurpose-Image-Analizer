@@ -4,7 +4,7 @@ function [image] = selectColor(image, color)
     
     for i = 1 : vSize
         for j = 1 : hSize
-            if ~similarOrEqualColor(cast(reshape(image(i, j, :), 1, 3), 'like', color), color)
+            if ~similarOrEqualColor(reshape(image(i, j, :), 1, 3), color)
                 image(i, j, :) = [0, 0, 0];
             end
         end

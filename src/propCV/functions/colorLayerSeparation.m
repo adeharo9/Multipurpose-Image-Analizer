@@ -3,7 +3,7 @@ function [imageLayers] = colorLayerSeparation(image)
     hSize = size(image, 2);
     
     colorFrequence = getColorsByFrequence(image);
-    imageLayers = zeros(size(colorFrequence, 1), vSize, hSize, 3);
+    imageLayers = uint8(zeros(size(colorFrequence, 1), vSize, hSize, 3));
     
     for i = 1 : size(colorFrequence, 1)
         imageLayers(i, :, :, :) = selectColor(image, colorFrequence(i, :));

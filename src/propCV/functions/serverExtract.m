@@ -13,11 +13,10 @@ I = imread('../../../output/servers/decodedImage.jpg');
 numObjects = generateObjects(I);
 Iout = uint32(zeros(numObjects,1));
 for i = 1:numObjects
-    fid = fopen(strcat('../../../output/servers/object_',num2str(i),'.png'));
+    fid = fopen(strcat('../../../output/servers/object_',num2str(i),'.png'),'rb');
     A = uint32(fread(fid));
     Iout(i,1) = size(A,1);
     Iout(i,2:size(A,1)+1) = A;
     fclose(fid);
 end
 end
-
