@@ -2,7 +2,7 @@
 
 This multipurpose image analyzer is an asset of Matlab scripts/functions designed for CV interaction with low-resolution graphical content for Optical Character Recognition (OCR), image layer extraction and several other utilities.
 
-##Features
+## Features
 
 ### Optical Character Recognition (OCR)
 In order to perform a proper OCR without the need of additional steps, the different functions provided in this repository offer a built-in noise filtering system, color flattering algorithms and image binarization. With this preprocessing, the OCR is granted for most languages with roman alphabet.
