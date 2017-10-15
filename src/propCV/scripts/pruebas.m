@@ -1,5 +1,5 @@
 close all
-imagenOriginal = imread('lel.png');
+imagenOriginal = imread('propCV_14.png');
 imagen = rgb2gray(imagenOriginal);
 imagen = imbinarize(imagen, graythresh(imagen));
 imshow(imagen);
