@@ -6,10 +6,10 @@ fwrite(fid, s, 'uint8');            % dump the raw binary to the hard disk
 fclose(fid);
 I = imread('decodedImage.jpg');
 numObjects = generateObjects(I);
-Iout = uint8(zeros(numObjects,1));
+Iout = uint32(zeros(numObjects,1));
 for i = 1:numObjects
     fid = fopen(strcat('../../common/images/object_',num2str(i),'.png'));
-    A = uint8(fread(fid));
+    A = uint32(fread(fid));
     Iout(i,1) = size(A,1);
     Iout(i,2:size(A,1)+1) = A;
     fclose(fid);
