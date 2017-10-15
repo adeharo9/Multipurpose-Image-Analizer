@@ -7,7 +7,6 @@
 *.asv
 
 # Directories #
-src/common/images
 out
 output
 .idea
