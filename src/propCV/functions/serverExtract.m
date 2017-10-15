@@ -9,7 +9,7 @@ end
 fid = fopen('../../../output/servers/decodedImage.jpg', 'wb');
 fwrite(fid, s, 'uint8');            % dump the raw binary to the hard disk
 fclose(fid);
-I = imread('decodedImage.jpg');
+I = imread('../../../output/servers/decodedImage.jpg');
 numObjects = generateObjects(I);
 Iout = uint32(zeros(numObjects,1));
 for i = 1:numObjects

@@ -9,7 +9,7 @@ end
 fid = fopen('../../../output/servers/decodedImage.jpg', 'wb');
 fwrite(fid, s, 'uint8');            % dump the raw binary to the hard disk
 fclose(fid);
-I = imread('decodedImage.jpg');
+I = imread('../../../output/servers/decodedImage.jpg');
 imLayers = colorLayerSeparation(I);
 Iout = uint32(zeros(size(imLayers,1),1));
 for i = 1:size(imLayers,1)

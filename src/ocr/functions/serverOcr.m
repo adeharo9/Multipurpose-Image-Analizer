@@ -9,6 +9,6 @@ end
 fid = fopen('../../../output/servers/decodedImage.jpg', 'wb');
 fwrite(fid, s, 'uint8');            % dump the raw binary to the hard disk
 fclose(fid);
-I = imread('decodedImage.jpg');
+I = imread('../../../output/servers/decodedImage.jpg');
 code = ocrFunction(I);
 end
