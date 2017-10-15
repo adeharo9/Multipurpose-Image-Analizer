@@ -13,7 +13,7 @@ for i = 1:sizei
             sizeTi = (maxi-mini)+1;
             sizeTj = (maxj-minj)+1;
             if sizeTi >= 6 && sizeTj >= 6
-                imwrite(Iref(mini:maxi,minj:maxj,:),strcat('object_',num2str(imCount),'.png'),'alpha',A(mini:maxi,minj:maxj,:));
+                imwrite(Iref(mini:maxi,minj:maxj,:),strcat('../../common/images/object_',num2str(imCount),'.png'),'alpha',A(mini:maxi,minj:maxj,:));
                 imCount = imCount+1;
             end
         end 
