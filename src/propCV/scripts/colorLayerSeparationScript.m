@@ -1,10 +1,17 @@
+clear;
+close all;
 clc;
+
 addpath('../functions/');
 addpath('../../common/functions/');
 addpath('../../../samples/propCV/');
-imageBasePath = 'propCV_';
 
-for i = 1 : 1
+imageBasePath = 'propCV_';
+imageFormat = '.png';
+imageSaveBasePath = '../../../output/propCV/';
+imageSavePartialPath = strcat(imageSaveBasePath, 'layer_', imageBasePath);
+
+for i = 2 : 2
     if i < 10
         imagePath = strcat(imageBasePath, '0', num2str(i), '.png');
     else
@@ -15,42 +22,21 @@ for i = 1 : 1
     colorFrequence = getColorsByFrequence(image);
 
     for j = 1 : size(colorFrequence, 1)
-        image = selectColor(image, colorFrequence(j, :));
+        imageLayer = selectColor(image, colorFrequence(j, :));
         
         if i < 10
+            imageSavePath = strcat(imageSavePartialPath, '0', num2str(i), '_');
             if j < 10
-                imwrite(image, strcat('../../../output/propCV/', 'layer_', imageBasePath, '0', num2str(i), '_0', num2str(j), '.png'));
-            else
-                imwrite(image, strcat('../../../output/propCV/', 'layer_', imageBasePath, '0', num2str(i), '_', num2str(j), '.png'));
+                imageSavePath = strcat(imageSavePath, '0');
             end
         else
+            imageSavePath = strcat(imageSavePartialPath, num2str(i), '_');
             if j < 10
-                imwrite(image, strcat('../../../output/propCV/', 'layer_', imageBasePath, num2str(i), '_0', num2str(j), '.png'));
-            else
-                imwrite(image, strcat('../../../output/propCV/', 'layer_', imageBasePath, num2str(i), '_', num2str(j), '.png'));
+                imageSavePath = strcat(imageSavePath, '0');
             end
         end
+        
+        imageSavePath = strcat(imageSavePath, num2str(j), imageFormat);
+        imwrite(imageLayer, imageSavePath);
     end
 end
-
-% for i = 1 : 11
-%     imagePath = 'super_mario_bros_';
-%     if(i < 10)
-%         imagePath = strcat(imagePath, '0');
-%     end
-%     
-%     imagePath = strcat(imagePath, num2str(i), '.png');
-% 
-%     back = background(imagePath);
-%     deleteColor(imagePath, back);
-% end
-
-% pSize = zeros(1, 442);
-
-% for i = 310 : 442
-%     pSize(i) = pixelSize('super_mario_bros_01.png', i);
-%     disp('Index: ');
-%     disp(i);
-%     disp('pixelSize: ');
-%     disp(pSize(i));
-% end

@@ -1,12 +1,16 @@
 clear;
 close all;
 clc;
+
 addpath('../functions/');
 addpath('../../common/functions/');
 addpath('../../../samples/propCV/');
+
 imageBasePath = 'propCV_';
-imagePath = strcat(imageBasePath, '11.png');
-imageSavePath = strcat('../../../output/propCV/', 'flatten_', imagePath);
+imageFormat = '.png';
+imagePath = strcat(imageBasePath, '13', imageFormat);
+imageSaveBasePath = '../../../output/propCV/';
+imageSavePath = strcat(imageSaveBasePath, 'flatten_', imagePath);
 
 image = flattenColor(imagePath);
 
