@@ -16,7 +16,7 @@ function [colorFrequence] = getColorsByFrequence(image, nColors)
     for i = 1 : 256
         for j = 1 : 256
             for k = 1 : 256
-                colorFrequence((i-1)*256*256 + (j-1)*256 + k, :) =  [colors(i, j, k), i - 1, j - 1, k - 1];
+                colorFrequence((i - 1)*256*256 + (j - 1)*256 + k, :) =  [colors(i, j, k), i - 1, j - 1, k - 1];
             end
         end
     end
@@ -28,18 +28,10 @@ function [colorFrequence] = getColorsByFrequence(image, nColors)
     for i = 1 : size(colorFrequence, 1) - 1
         j = i + 1;
         while j <= size(colorFrequence, 1)
-            if ~exist('nColors', 'var')
-                if similarColor(colorFrequence(i, :), colorFrequence(j, :))
-                    colorFrequence(j, :) = [];
-                else
-                    j = j + 1;
-                end
+            if similarColor(colorFrequence(i, :), colorFrequence(j, :))
+                colorFrequence(j, :) = [];
             else
-                if similarColor(colorFrequence(i, :), colorFrequence(j, :), 1/nColors)
-                    colorFrequence(j, :) = [];
-                else
-                    j = j + 1;
-                end
+                j = j + 1;
             end
         end
     end
@@ -47,5 +39,4 @@ function [colorFrequence] = getColorsByFrequence(image, nColors)
     if exist('nColors', 'var')
         colorFrequence = colorFrequence(1:nColors, :);
     end
-    
 end
