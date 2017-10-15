@@ -2,7 +2,11 @@ function [code] = serverOcr(s)
 %UNTITLED Summary of this function goes here
 %   Detailed explanation goes here
 
-fid = fopen('../../common/images/decodedImage.jpg', 'wb');
+if ~exist('../../../output/servers/', 'dir')
+    mkdir '../../../output/servers/';
+end
+
+fid = fopen('../../../output/servers/decodedImage.jpg', 'wb');
 fwrite(fid, s, 'uint8');            % dump the raw binary to the hard disk
 fclose(fid);
 I = imread('decodedImage.jpg');
